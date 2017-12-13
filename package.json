@@ -15,12 +15,14 @@
     "fs-extra": "^4.0.3",
     "koa": "^2.4.1",
     "ts-node": "^4.0.1",
+    "webpack": "^3.10.0",
     "yargs": "^10.0.3"
   },
   "devDependencies": {
     "@types/blue-tape": "^0.1.31",
     "@types/fs-extra": "^4.0.5",
     "@types/koa": "^2.0.42",
+    "@types/webpack": "^3.8.1",
     "@types/yargs": "^10.0.0",
     "blue-tape": "^1.0.0",
     "ts-loader": "^3.2.0",

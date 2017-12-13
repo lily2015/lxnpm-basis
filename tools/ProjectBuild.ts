@@ -1,6 +1,7 @@
 import { argv } from "yargs";
-import { HelperTask } from "./task/HelperTask";
 import { CleanTask } from "./task/CleanTask";
+import { ConfigTask } from "./task/ConfigTask";
+import { HelperTask } from "./task/HelperTask";
 
 export class ProjectBuild {
   private watchModel = false;

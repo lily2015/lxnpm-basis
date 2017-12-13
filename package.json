@@ -7,14 +7,23 @@
   "license": "MIT",
   "scripts": {
     "i": "yarn i",
-    "dev": ""
+    "dev": "",
+    "build": "",
+    "publish": ""
   },
   "dependencies": {
+    "fs-extra": "^4.0.3",
     "koa": "^2.4.1",
-    "ts-node": "^3.3.0"
+    "ts-node": "^4.0.1",
+    "yargs": "^10.0.3"
   },
   "devDependencies": {
+    "@types/blue-tape": "^0.1.31",
+    "@types/fs-extra": "^4.0.5",
     "@types/koa": "^2.0.42",
+    "@types/yargs": "^10.0.0",
+    "blue-tape": "^1.0.0",
+    "ts-loader": "^3.2.0",
     "tslint": "^5.8.0",
     "tslint-loader": "^3.5.3",
     "typescript": "^2.6.2"

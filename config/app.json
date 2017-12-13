@@ -1,0 +1,6 @@
+{
+    "app_name": "lxnpm-basis",
+    "custom": {
+        "port": 3000
+    }
+}

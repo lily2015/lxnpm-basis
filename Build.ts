@@ -1,32 +1,27 @@
 import { argv } from "yargs";
 import { ConfigTask } from "./tools/task/ConfigTask";
 import { HelperTask } from "./tools/task/HelperTask";
-// import { PublishTask } from "./task/PublishTask";
-// import { ShellTask } from "./task/ShellTask";
-// import { SonarqubeScanner } from "./task/SonarqubeScanner";
-// import { UglifyJSTask } from "./task/UglifyJSTask";
+import { PublishTask } from "./tools/task/PublishTask";
+import { ShellTask } from "./tools/task/ShellTask";
+import { UglifyJSTask } from "./tools/task/UglifyJSTask";
 
 class Build {
   public async startup() {
     const task = new HelperTask();
-    // if (argv.publish) {
-    //   await new SonarqubeScanner().startup();
-    // }
     // 清理及数据准备工作
     task.init();
     task.start();
     await task.cleanTaskAsync();
-
+    // 配置文件
     await new ConfigTask().run();
-
-    // 开始编译工作
-    // await new PackageInfo().run();
-    // await new ShellTask().run("tsc -p tools");
-    // await new UglifyJSTask().run();
-    // if (argv.publish) {
-    //   开始发布任务
-    //   await new PublishTask().start();
-    // }
+    // 开始编译
+    await new ShellTask().run("tsc -p ./web");
+    await new ShellTask().run("tsc -p ./tools");
+    await new UglifyJSTask().run();
+    // 发布任务
+    if (argv.publish) {
+      await new PublishTask().start();
+    }
     task.end();
   }
 

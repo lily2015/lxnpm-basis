@@ -20,20 +20,20 @@ export class HelperTask {
     new Logger().replaceConsole();
     this.showVersion();
     process.once("SIGINT", () => {
-      console.log("安全退出");
+      console.info("安全退出");
       process.exit();
     });
   }
   // 编译开始
   public start() {
     this.startDateTime = new Date();
-    console.log(["-".repeat(50), "编译详细信息", "-".repeat(50)].join(""));
+    console.info(["-".repeat(50), "编译详细信息", "-".repeat(50)].join(""));
   }
   // 编译结束
   public end() {
     this.endDateTime = new Date();
     const dTime = (this.endDateTime.getTime() - this.startDateTime.getTime()) / 1000 + "s";
-    console.log(["-".repeat(50), "编译信息结束", "-".repeat(50)].join(""), "\n", "编译总耗时", dTime, "\n");
+    console.info(["-".repeat(50), "编译信息结束", "-".repeat(50)].join(""), "\n", "编译总耗时", dTime, "\n");
     this.sendMessage("首次编译结束", "编译总耗时 " + dTime);
   }
   // 清理之前编译
@@ -54,7 +54,7 @@ export class HelperTask {
   }
   // 关键应用版本
   public showVersion() {
-    console.log("->", "showVersion",
+    console.info("->", "showVersion",
       "node@" + execSync("node -v").toString().replace(/\r|\n/g, ""),
       "npm@v" + execSync("npm -v").toString().replace(/\r|\n/g, ""),
       "yarn@" + execSync("yarn -v").toString().replace(/\r|\n/g, ""),

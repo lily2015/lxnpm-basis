@@ -31,4 +31,3 @@ export class ProjectBuild {
     process.exit(1);
   }
 })();
-

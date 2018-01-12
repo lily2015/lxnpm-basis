@@ -1,6 +1,6 @@
 import { argv } from "yargs";
+import { ConfigTask } from "./tools/task/ConfigTask";
 import { HelperTask } from "./tools/task/HelperTask";
-// import { PackageInfo } from "./task/PackageInfo";
 // import { PublishTask } from "./task/PublishTask";
 // import { ShellTask } from "./task/ShellTask";
 // import { SonarqubeScanner } from "./task/SonarqubeScanner";
@@ -15,7 +15,9 @@ class Build {
     // 清理及数据准备工作
     task.init();
     task.start();
-    await task.cleanAndReplaceAsync();
+    await task.cleanTaskAsync();
+
+    await new ConfigTask().run();
 
     // 开始编译工作
     // await new PackageInfo().run();

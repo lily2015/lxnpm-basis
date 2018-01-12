@@ -3,7 +3,7 @@ import { HelperTask } from "./HelperTask";
 
 export class CleanTask {
     public start() {
-        console.log("->", "CleanTask", HelperTask.taking());
+        console.info("->", "CleanTask", HelperTask.taking());
         try {
             fs.removeSync("build");
             console.info("CleanTask.remove.build");

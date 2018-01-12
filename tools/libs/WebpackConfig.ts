@@ -1,6 +1,6 @@
 import * as klaw from "klaw";
 import * as path from "path";
-import { Config } from "../../web/Config";
+import { Config } from "../../web/libs/Config";
 
 export class WebpackConfig {
   private cndPath: string;

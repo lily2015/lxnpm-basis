@@ -15,7 +15,9 @@ export class HelperTask {
   private static prevDateTime = new Date();
   private startDateTime: any;
   private endDateTime: any;
+  // 初始化
   public init() {
+    new Logger().replaceConsole();
     this.showVersion();
     process.once("SIGINT", () => {
       console.log("安全退出");
@@ -25,7 +27,7 @@ export class HelperTask {
   // 编译开始
   public start() {
     this.startDateTime = new Date();
-    console.log("\n", ["-".repeat(50), "编译详细信息", "-".repeat(50)].join(""));
+    console.log(["-".repeat(50), "编译详细信息", "-".repeat(50)].join(""));
   }
   // 编译结束
   public end() {
@@ -33,13 +35,9 @@ export class HelperTask {
     const dTime = (this.endDateTime.getTime() - this.startDateTime.getTime()) / 1000 + "s";
     console.log(["-".repeat(50), "编译信息结束", "-".repeat(50)].join(""), "\n", "编译总耗时", dTime, "\n");
     this.sendMessage("首次编译结束", "编译总耗时 " + dTime);
-    new Logger().replaceConsole();
   }
-  public async cleanAndReplaceAsync() {
-    await new Logger().replaceConsole();
-    await this.cleanAsync();
-  }
-  public async cleanAsync() {
+  // 清理之前编译
+  public async cleanTaskAsync() {
     await new CleanTask().start();
   }
   // 跨平台系统通知
@@ -54,6 +52,7 @@ export class HelperTask {
     };
     Notifier.notify(msg);
   }
+  // 关键应用版本
   public showVersion() {
     console.log("->", "showVersion",
       "node@" + execSync("node -v").toString().replace(/\r|\n/g, ""),

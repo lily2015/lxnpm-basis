@@ -2,13 +2,12 @@ import * as fs from "fs-extra";
 import { HelperTask } from "./HelperTask";
 
 export class CleanTask {
-    public start() {
-        console.info("->", "CleanTask", HelperTask.taking());
-        try {
-            fs.removeSync("build");
-            console.info("CleanTask.remove.build");
-        } catch (error) {
-            console.error("CleanTask.build.error", error.message);
-        }
+  public start() {
+    try {
+      fs.removeSync("build");
+      console.info("CleanTask -> build目录已清理");
+    } catch (error) {
+      console.error("CleanTask -> ", error.message);
     }
+  }
 }

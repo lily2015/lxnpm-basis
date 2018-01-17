@@ -10,6 +10,11 @@
     "jsx": "react",
     "sourceMap": true,
     "outDir": "./build",
-    "strict": true
+    "declaration": true,
+    "strict": true,
+    "typeRoots": [
+      "node_modules/@types",
+      "typings"
+    ]
   }
 }

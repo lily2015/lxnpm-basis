@@ -1,6 +1,6 @@
 {
-  "name": "lxxnpm-basis",
-  "version": "1.0.0",
+  "name": "lxnpm-basis",
+  "version": "1.0.3",
   "main": "index.js",
   "repository": "https://github.com/lily2015/lxxnpm-basis.git",
   "author": "lily <lixue2015@hotmail.com>",
@@ -8,8 +8,7 @@
   "scripts": {
     "i": "yarn i",
     "dev": "ts-node ./src/server/",
-    "build": "ts-node ./Build",
-    "publish": "ts-node ./Build --publish"
+    "build": "ts-node ./tools/PackageBuild"
   },
   "dependencies": {
     "fs-extra": "^5.0.0",

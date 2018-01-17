@@ -8,15 +8,11 @@ import { HelperTask } from "./HelperTask";
 export class PublishTask {
   public buildPath = path.normalize("build");
   public async start() {
-    console.info("PublishTask -> start | cwd: ", this.buildPath);
+    console.info("PublishTask > start | cwd: ", this.buildPath);
     const output = execSync("npm publish", {
       cwd: this.buildPath,
     });
-    console.warn("PublishTask -> end");
-  }
-  public async packageJson() {
-    const packageJson = fs.readFileSync("package.json", "utf8");
-    fs.writeFileSync(this.buildPath + "/package.json", packageJson);
+    console.warn("PublishTask > end");
   }
 }
 export default PublishTask;

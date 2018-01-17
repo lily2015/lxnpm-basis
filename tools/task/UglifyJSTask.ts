@@ -10,10 +10,10 @@ export class UglifyJSTask {
           .pipe(uglify())
           .pipe(gulp.dest("build"))
           .on("end", () => {
-            console.info("UglifyJSTask -> end");
+            console.info("UglifyJSTask > end");
             resolve();
           }).on("error", (error) => {
-            console.info("UglifyJSTask -> error");
+            console.info("UglifyJSTask > error");
             reject(error);
           });
       });

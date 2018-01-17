@@ -54,7 +54,7 @@ export class HelperTask {
   }
   // 关键应用版本
   public showVersion() {
-    console.info("->", "showVersion",
+    console.info(">", "showVersion",
       "node@" + execSync("node -v").toString().replace(/\r|\n/g, ""),
       "npm@v" + execSync("npm -v").toString().replace(/\r|\n/g, ""),
       "yarn@" + execSync("yarn -v").toString().replace(/\r|\n/g, ""),

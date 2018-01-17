@@ -8,10 +8,10 @@ export class ConfigTask {
       gulp.task("ConfigTask", () => {
         return gulp.src("config/**/*.json")
           .on("end", () => {
-            console.info("ConfigTask -> done");
+            console.info("ConfigTask > done");
             resolve();
           }).on("error", (error: any) => {
-            console.error("ConfigTask -> ", error.message);
+            console.error("ConfigTask > ", error.message);
             reject(error);
           })
           .pipe(jsonminify())

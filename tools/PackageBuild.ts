@@ -3,6 +3,7 @@ import { Logger } from "./libs/Logger";
 import { LoggerConsole as console } from "./libs/LoggerConsole";
 import { CleanTask } from "./task/CleanTask";
 import { HelperTask } from "./task/HelperTask";
+import { PackageInfo } from "./task/PackageInfo";
 import { PublishTask } from "./task/PublishTask";
 import { TSCompileTask } from "./task/TSCompileTask";
 import { UglifyJSTask } from "./task/UglifyJSTask";
@@ -16,7 +17,7 @@ class Build {
     await new UglifyJSTask().run();
     // 发布任务
     if (argv.publish) {
-      await new PublishTask().packageJson();
+      await new PackageInfo(true);
       await new PublishTask().start();
     }
   }

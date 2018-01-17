@@ -2,7 +2,7 @@ import * as fs from "fs-extra";
 import * as Path from "path";
 import { Utils } from "../libs/Utils";
 
-export default class PackageInfo {
+export class PackageInfo {
   private version = 0;
   private packageJson: any;
   private utils = new Utils();
@@ -11,7 +11,7 @@ export default class PackageInfo {
   private buildPath = Path.normalize("./build");
   constructor(auto = false) {
     if (auto) {
-      console.log("packageinfo auto ->>");
+      console.log("packageinfo > auto: ", auto);
       this.init();
       this.setVersion(this.getProcessVersion());
       this.replacePackage();
@@ -29,7 +29,7 @@ export default class PackageInfo {
     try {
       fs.mkdirpSync(this.buildPath);
     } catch (error) {
-      console.log("PackageInfo -> Can not mkdir", this.buildPath);
+      console.log("PackageInfo > Can not mkdir", this.buildPath);
     }
   }
 
@@ -47,6 +47,7 @@ export default class PackageInfo {
 
   public getProcessVersion(must = false) {
     let version = Number(process.argv[2]);
+    console.log("getProcessVersion > process.argv[2]: ", version);
     if (isNaN(version)) {
       version = 0;
     }
@@ -83,7 +84,7 @@ export default class PackageInfo {
 
   public setCDN() {
     this.packageJson.cdn = this.packageJson.name + "/" + this.versionDate;
-    console.log("PackageInfo -> cdn", this.packageJson.cdn);
+    console.log("PackageInfo > cdn", this.packageJson.cdn);
   }
 
   public setVersion(version: number) {
@@ -91,6 +92,6 @@ export default class PackageInfo {
     ver[2] = Number(ver[2]) + version;
     this.packageJson.version = ver.join(".");
     this.version = this.packageJson.version;
-    console.log("PackageInfo -> version", this.packageJson.version);
+    console.log("PackageInfo > version", this.packageJson.version);
   }
 }

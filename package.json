@@ -7,8 +7,9 @@
   "license": "MIT",
   "scripts": {
     "i": "yarn i",
-    "dev": "ts-node ./src/server/",
-    "build": "ts-node ./tools/PackageBuild"
+    "projectBuild": "ts-node ./tools/ProjectBuild",
+    "build": "ts-node ./tools/PackageBuild",
+    "devbuild": "ts-node ./tools/DevPackageBuild"
   },
   "dependencies": {
     "fs-extra": "^5.0.0",
@@ -43,5 +44,9 @@
     "tslint": "^5.8.0",
     "tslint-loader": "^3.5.3",
     "typescript": "^2.6.2"
+  },
+  "bin": {
+    "PackageBuild": "./tools/PackageBuild.js",
+    "ProjectBuild": "./tools/ProjectBuild.js"
   }
 }

@@ -1,7 +1,9 @@
 import * as klaw from "klaw";
 import * as path from "path";
 import { Config } from "../../web/libs/Config";
+import { ConstFloder } from "../const/ConstFloder";
 
+// 统一打包时配置
 export class WebpackConfig {
   private cndPath: string;
   private async getConfig() {
@@ -11,10 +13,10 @@ export class WebpackConfig {
   private async setConfig() {
     const entry = {};
     const config = {
-      entry: __dirname + "src",
+      entry: __dirname + ConstFloder.compileSource,
       output: {
-          path: path.resolve(__dirname, "build"),
-          filename: "bundle.js",
+        path: path.resolve(__dirname, "build"),
+        filename: "bundle.js",
       },
       module: {
         rules: [
@@ -34,6 +36,7 @@ export class WebpackConfig {
           },
           {
             test: /\.(ico|jpg|jpeg|png|gif|eot|otf|webp|svg|ttf|woff|woff2)(\?.*)?$/,
+            exclude: /node_modules/,
             use: [
               {
                 loader: "url-loader",

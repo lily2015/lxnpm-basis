@@ -1,5 +1,6 @@
 import * as gulp from "gulp";
 import * as jsonminify from "gulp-jsonminify";
+import { ConstFloder } from "../const/ConstFloder";
 import { LoggerConsole as console } from "../libs/LoggerConsole";
 
 export class ConfigTask {
@@ -15,7 +16,7 @@ export class ConfigTask {
             reject(error);
           })
           .pipe(jsonminify())
-          .pipe(gulp.dest("build/config"));
+          .pipe(gulp.dest(`${ConstFloder.buildInto}/config`));
       });
       gulp.start("ConfigTask");
     });

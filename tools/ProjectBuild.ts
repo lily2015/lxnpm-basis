@@ -1,33 +1,29 @@
-import { argv } from "yargs";
-import { CleanTask } from "./task/CleanTask";
-import { ConfigTask } from "./task/ConfigTask";
-import { HelperTask } from "./task/HelperTask";
+#!/usr/bin/env node
 
-export class ProjectBuild {
-  private watchModel = false;
-  public async start() {
-    const helpTask = new HelperTask();
-    const cleanTask = new CleanTask();
-    await cleanTask.start();
-    await this.build();
-  }
-  public async build() {
-    console.log("build");
-  }
-  public setWatchModel(watchModel: boolean = this.watchModel) {
-    this.watchModel = watchModel;
+import { argv } from "yargs";
+import { Logger } from "./libs/Logger";
+import { LoggerConsole as console } from "./libs/LoggerConsole";
+import { CleanTask } from "./task/CleanTask";
+import { HelperTask } from "./task/HelperTask";
+import { PackageInfo } from "./task/PackageInfo";
+// import { PublishTask } from "./task/PublishTask";
+import { TSCompileTask } from "./task/TSCompileTask";
+import { UglifyJSTask } from "./task/UglifyJSTask";
+
+class Build {
+  private cdn: string;
+  public async startup() {
+    await new Logger().replaceConsole();
+    // build 清理
+    await new CleanTask().start();
+    // 开始编译
+    await new TSCompileTask().run();
+    await new UglifyJSTask().run();
+    // 取cdn
+    this.cdn = await new PackageInfo(true).getCDN();
+    // d
   }
 }
-
 (async () => {
-  const projectBuild = new ProjectBuild();
-  if (argv.watch) {
-    console.log("[yargs --watch ]" + "-".repeat(20));
-    projectBuild.setWatchModel(true);
-  }
-  try {
-    await projectBuild.start();
-  } catch (error) {
-    process.exit(1);
-  }
+  new Build().startup();
 })();

@@ -4,9 +4,9 @@ import { argv } from "yargs";
 import { Logger } from "./libs/Logger";
 import { LoggerConsole as console } from "./libs/LoggerConsole";
 import { CleanTask } from "./task/CleanTask";
+import { DevPublishTask } from "./task/DevPublishTask";
 import { HelperTask } from "./task/HelperTask";
 import { PackageInfo } from "./task/PackageInfo";
-import { PublishTask } from "./task/PublishTask";
 import { TSCompileTask } from "./task/TSCompileTask";
 import { UglifyJSTask } from "./task/UglifyJSTask";
 
@@ -19,10 +19,12 @@ class Build {
     await new TSCompileTask().run();
     await new UglifyJSTask().run();
     // 发布任务
-    if (argv.publish) {
-      await new PackageInfo(true);
-      await new PublishTask().start();
-    }
+    await new PackageInfo(true);
+
+    // 输出到目标文件夹
+    // const outputPath = "/Users/lixue/lily2015/testPublish/";
+    const outputPath = "/Users/lixue/lily2015/koa-react/node_modules/lxnpm-basis/";
+    await new DevPublishTask().start(outputPath);
   }
 }
 (async () => {

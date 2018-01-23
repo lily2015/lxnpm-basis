@@ -7,7 +7,9 @@
 
 // var path = require("path")
 import * as  cp from "child_process";
+import { ConstFloder } from "../const/ConstFloder";
 import { ConfigHelper } from "../libs/ConfigHelper";
+
 // Should match the text string used in `src/server.js/server.listen(...)`
 const RUNNING_REGEXP = /The server is running at http:\/\/(.*?)\//;
 
@@ -46,7 +48,7 @@ export function RunServer(serverPath: string, debug: any, cb: any = false) {
   console.log("RunServer", "debug", params);
   server = cp.spawn("node", params, {
     // env: Object.assign({ NODE_ENV: "development" }, process.env),
-    cwd: "build",
+    cwd: ConstFloder.buildInto,
     // silent: false,
   });
   if (cbIsPending) {

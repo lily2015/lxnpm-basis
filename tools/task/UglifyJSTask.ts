@@ -1,14 +1,15 @@
 import * as gulp from "gulp";
 import * as uglify from "gulp-uglify";
+import { ConstFloder } from "../const/ConstFloder";
 import { LoggerConsole as console } from "../libs/LoggerConsole";
 
 export class UglifyJSTask {
   public run() {
     return new Promise((resolve, reject) => {
       gulp.task("UglifyJSTask", () => {
-        return gulp.src("build/**/*.js")
+        return gulp.src(`${ConstFloder.buildInto}/**/*.js`)
           .pipe(uglify())
-          .pipe(gulp.dest("build"))
+          .pipe(gulp.dest(ConstFloder.buildInto))
           .on("end", () => {
             console.info("UglifyJSTask > end");
             resolve();

@@ -5,4 +5,5 @@ import { PackageInfo } from "../../../tools/task/PackageInfo";
 // 清理
 Tape("PackageInfo", async () => {
   const info = new PackageInfo(true);
+  console.log("===", info.getCDN());
 });

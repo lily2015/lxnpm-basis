@@ -7,7 +7,7 @@ export class Config {
   private appConfigJson: any;
 
   public async getAppConfigJson() {
-    const appConfig = fs.readFileSync(this.rootPath + "/config/app.json", "utf8");
+    const appConfig = await fs.readFileSync(this.rootPath + "/config/app.json", "utf8");
     const appConfigJson = JSON.parse(appConfig);
     return appConfigJson;
   }

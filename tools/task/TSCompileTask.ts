@@ -5,14 +5,21 @@ import { ShellTask } from "./ShellTask";
 
 export class TSCompileTask {
   // private compileTarget = ["tools", "web", "src", "examples"];
-  public async run() {
-    for (const item of ConstFloder.compileFrom) {
-      fs.exists(item, async (exists) => {
-        if (exists) {
-          await new ShellTask().run(`tsc -p ./${item}`);
-          console.info(`TSCompileTask > end > ${item}`);
-        }
+  public run(cil: string = "tsc -p") {
+    return new Promise((resolve, reject) => {
+      console.info(`TSCompileTask > start`);
+      ConstFloder.compileFrom.map((item, i) => {
+        fs.exists(item, (exists) => {
+          if (exists) {
+            console.info(`TSCompileTask item > start > ${cil} | ${item}`);
+            new ShellTask().run(`${cil} ./${item}`);
+            console.info(`TSCompileTask > end > ${item}`);
+          }
+          if ((i + 1) === ConstFloder.compileFrom.length) {
+            resolve();
+          }
+        });
       });
-    }
+    });
   }
 }

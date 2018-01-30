@@ -6,6 +6,7 @@ import { LoggerConsole as console } from "../libs/LoggerConsole";
 export class ConfigTask {
   public async run() {
     return new Promise((resolve, reject) => {
+      gulp.series("ConfigTask");
       gulp.task("ConfigTask", () => {
         return gulp.src("config/**/*.json")
           .on("end", () => {
@@ -18,7 +19,6 @@ export class ConfigTask {
           .pipe(jsonminify())
           .pipe(gulp.dest(`${ConstFloder.buildInto}/config`));
       });
-      gulp.start("ConfigTask");
     });
   }
 }

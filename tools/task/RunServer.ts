@@ -8,7 +8,6 @@
 // var path = require("path")
 import * as  cp from "child_process";
 import { ConstFloder } from "../const/ConstFloder";
-import { ConfigHelper } from "../libs/ConfigHelper";
 
 // Should match the text string used in `src/server.js/server.listen(...)`
 const RUNNING_REGEXP = /The server is running at http:\/\/(.*?)\//;

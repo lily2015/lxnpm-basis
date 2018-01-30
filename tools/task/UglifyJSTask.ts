@@ -6,6 +6,7 @@ import { LoggerConsole as console } from "../libs/LoggerConsole";
 export class UglifyJSTask {
   public run() {
     return new Promise((resolve, reject) => {
+      console.info("UglifyJSTask > start");
       gulp.task("UglifyJSTask", () => {
         return gulp.src(`${ConstFloder.buildInto}/**/*.js`)
           .pipe(uglify())

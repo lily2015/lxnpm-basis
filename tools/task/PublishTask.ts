@@ -13,7 +13,6 @@ export class PublishTask {
     const output = execSync("npm publish", {
       cwd: this.buildPath,
     });
-    console.warn("PublishTask > end");
+    console.info("PublishTask > end");
   }
 }
-export default PublishTask;
